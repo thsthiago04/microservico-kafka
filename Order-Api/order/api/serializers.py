@@ -1,17 +1,13 @@
+from django.db.models import fields
 from rest_framework import serializers
-from order import models
+from models import Order, Product 
 
 class OrderSerializer(serializers.ModelSerializer):
   class Meta:
-    model = models.Order
+    model = Order
     fields = '__all__'
-
-class OrderItemSerializer(serializers.ModelSerializer):
-  class Meta:
-    model = models.Order
-    fields = '__all__'
-
+    
 class ProductSerializer(serializers.ModelSerializer):
   class Meta:
-    model = models.Order
+    model = Product
     fields = '__all__'
