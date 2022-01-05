@@ -1,6 +1,6 @@
 from django.db.models import fields
 from rest_framework import serializers
-from models import Order, Product 
+from ..models import Order, Product 
 
 class OrderSerializer(serializers.ModelSerializer):
   class Meta:
