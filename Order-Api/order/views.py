@@ -5,16 +5,20 @@ from .api.serializers import OrderSerializer
 
 @api_view(['GET', 'POST'])
 def order(request):
+  ordersSerializer = OrderSerializer
   if request.method == 'GET':
     orders = Order.objects.all()
-    return Response({"results": orders }, status=201)
+    return Response({"results": ordersSerializer(orders, many=True).data }, status=201)
 
   if request.method == 'POST':
+    product = Product()
+    product.name = request.data['name']
+    product.weight= request.data['weight']
+    product.save()
+
     order = Order()
     order.value_order = float(request.data['valueOrder'])
+    order.product = product
     order.save()
-    
-    product = Product()
-    product.name = request.data['valueOrder']
 
     return Response(OrderSerializer(order).data, status=201)
