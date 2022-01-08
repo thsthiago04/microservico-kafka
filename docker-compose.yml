@@ -24,7 +24,7 @@ services:
   product-api:
     container_name: product-api
     build: ./Product-api/
-    command: python ./Product-api/manage.py runserver 0.0.0.0:8000
+    command: python ./Order-Api/manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/code
     ports:
@@ -33,8 +33,8 @@ services:
       - db-product
   order-api:
     container_name: order-api
-    build: ./Order-Api/.
-    command: python ./Order-Api/manage.py runserver 0.0.0.0:8080
+    build: ./Order-Api/
+    command: python ./Product-api/manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/code
     ports:
